@@ -45,7 +45,7 @@
         <!-- remediation message -->
         <fixtext>Remove the telnet package with 'microdnf remove telnet'.</fixtext>
         <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
-            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-telnet:def:1"/>
+            <check-content-ref href="ubi9-oval.xml" name="oval:com-redhat-ubi9-telnet:def:1"/>
         </check>
     </Rule>
 
@@ -59,7 +59,7 @@
         <!-- remediation message -->
         <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
         <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
-            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-curl:def:2"/>
+            <check-content-ref href="ubi9-oval.xml" name="oval:com-redhat-ubi9-curl:def:2"/>
         </check>
     </Rule>
 
@@ -73,7 +73,7 @@
         <!-- remediation message -->
         <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
         <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
-            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-libcurl-minimal:def:3"/>
+            <check-content-ref href="ubi9-oval.xml" name="oval:com-redhat-ubi9-libcurl-minimal:def:3"/>
         </check>
     </Rule>
     
@@ -87,7 +87,7 @@
         <!-- remediation message -->
         <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
         <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
-            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-bzip2-libs:def:4"/>
+            <check-content-ref href="ubi9-oval.xml" name="oval:com-redhat-ubi9-bzip2-libs:def:4"/>
         </check>
     </Rule>
 </Benchmark>
