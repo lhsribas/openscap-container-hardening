@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+                  xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" 
+                  xmlns:red-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" 
+                  xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+
+  <!-- Metadata Information -->
+  <generator>
+    <oval:product_name>Red Hat Universal Base Image 9 OVAL Definitions</oval:product_name>
+    <oval:product_version>1.0</oval:product_version>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2024-10-09T00:00:00</oval:timestamp>
+  </generator>
+
+  <!-- Definitions Section -->
+
+  <!-- 1. Check if package X is installed -->
+  <definitions>
+  
+    <!-- 1. Check if telnet is installed -->
+    <definition id="oval:com-redhat-ubi9-telnet:def:1" version="1" class="vulnerability">
+        <metadata>
+            <title>Ensure telnet is not installed on Red Hat UBI 9</title>
+            <description>Checks if the telnet package is installed on Red Hat UBI 9, which should be removed due to security risks.</description>
+            <affected family="unix">
+                <platform>Red Hat Universal Base Image 9</platform>
+            </affected>
+            <severity>high</severity>
+        </metadata>
+        <criteria>
+            <criterion test_ref="oval:com-redhat-ubi9-telnet:tst:1" comment="Check if telnet is installed"/>
+        </criteria>
+    </definition>
+
+    <definition id="oval:com-redhat-ubi9-curl:def:2" version="1" class="vulnerability">
+        <metadata>
+            <title>Ensure curl is not installed on Red Hat UBI 9</title>
+            <description>Checks if the curl package is installed on Red Hat UBI 9, which should be removed due to security risks.</description>
+            <affected family="unix">
+                <platform>Red Hat Universal Base Image 9</platform>
+            </affected>
+            <severity>high</severity>
+        </metadata>
+        <criteria>
+            <criterion test_ref="oval:com-redhat-ubi9-curl:tst:2" comment="Check if curl is installed"/>
+        </criteria>
+    </definition>
+
+    <definition id="oval:com-redhat-ubi9-libcurl-minimal:def:3" version="1" class="vulnerability">
+        <metadata>
+            <title>Ensure libcurl is not installed on Red Hat UBI 9</title>
+            <description>Checks if the libcurl package is installed on Red Hat UBI 9, which should be removed due to security risks.</description>
+            <affected family="unix">
+                <platform>Red Hat Universal Base Image 9</platform>
+            </affected>
+            <severity>high</severity>
+        </metadata>
+        <criteria>
+            <criterion test_ref="oval:com-redhat-ubi9-libcurl-minimal:tst:3" comment="Check if libcurl is installed"/>
+        </criteria>
+    </definition>
+
+    <definition id="oval:com-redhat-ubi9-bzip2-libs:def:4" version="1" class="vulnerability">
+        <metadata>
+            <title>Ensure bzip2-libs is not installed on Red Hat UBI 9</title>
+            <description>Checks if the bzip2-libs package is installed on Red Hat UBI 9, which should be removed due to security risks.</description>
+            <affected family="unix">
+                <platform>Red Hat Universal Base Image 9</platform>
+            </affected>
+            <severity>high</severity>
+        </metadata>
+        <criteria>
+            <criterion test_ref="oval:com-redhat-ubi9-bzip2-libs:tst:4" comment="Check if bzip2-libs is installed"/>
+        </criteria>
+    </definition>
+
+  </definitions>
+
+  <!-- Tests Section -->
+  <tests> 
+    <!-- Test 1: Check if telnet is installed -->
+    <red-def:rpminfo_test id="oval:com-redhat-ubi9-telnet:tst:1" version="1" check="all" comment="Check if telnet is installed">
+      <red-def:object object_ref="oval:com-redhat-ubi9-telnet:obj:1"/>
+      <red-def:state state_ref="oval:com-redhat-ubi9-telnet:ste:1"/>
+    </red-def:rpminfo_test>
+
+    <!-- Test 2: Check if curl is installed -->
+    <red-def:rpminfo_test id="oval:com-redhat-ubi9-curl:tst:2" version="1" check="all" comment="Check if curl is installed">
+      <red-def:object object_ref="oval:com-redhat-ubi9-curl:obj:2"/>
+      <red-def:state state_ref="oval:com-redhat-ubi9-curl:ste:2"/>
+    </red-def:rpminfo_test>
+
+    <!-- Test 3: Check if libcurl is installed -->
+    <red-def:rpminfo_test id="oval:com-redhat-ubi9-libcurl-minimal:tst:3" version="1" check="all" comment="Check if libcurl is installed">
+      <red-def:object object_ref="oval:com-redhat-ubi9-libcurl-minimal:obj:3"/>
+      <red-def:state state_ref="oval:com-redhat-ubi9-libcurl-minimal:ste:3"/>
+    </red-def:rpminfo_test>
+  
+    <!-- Test 3: Check if bzip2-libs is installed -->
+    <red-def:rpminfo_test id="oval:com-redhat-ubi9-bzip2-libs:tst:4" version="1" check="all" comment="Check if bzip2-libs is installed">
+      <red-def:object object_ref="oval:com-redhat-ubi9-bzip2-libs:obj:4"/>
+      <red-def:state state_ref="oval:com-redhat-ubi9-bzip2-libs:ste:4"/>
+    </red-def:rpminfo_test>
+  </tests>
+
+  <!-- Objects Section -->
+  <objects>
+    <!-- Object 1: Check for telnet -->
+    <red-def:rpminfo_object id="oval:com-redhat-ubi9-telnet:obj:1" version="1">
+      <red-def:name>telnet</red-def:name>
+    </red-def:rpminfo_object>
+
+    <!-- Object 2: Check for curl-minimal -->
+    <red-def:rpminfo_object id="oval:com-redhat-ubi9-curl:obj:2" version="1">
+      <red-def:name>curl-minimal</red-def:name>
+    </red-def:rpminfo_object>
+
+    <!-- Object 3: Check for libcurl-minimal -->
+    <red-def:rpminfo_object id="oval:com-redhat-ubi9-libcurl-minimal:obj:3" version="1">
+      <red-def:name>libcurl-minimal</red-def:name>
+    </red-def:rpminfo_object>
+
+    <!-- Object 4: Check for bzip2-libs -->
+    <red-def:rpminfo_object id="oval:com-redhat-ubi9-bzip2-libs:obj:4" version="1">
+      <red-def:name>bzip2-libs</red-def:name>
+    </red-def:rpminfo_object>
+  </objects>
+
+  <!-- States Section -->
+  <states>
+    <!-- State 1: Ensure telnet is not installed -->
+    <red-def:rpminfo_state id="oval:com-redhat-ubi9-telnet:ste:1" version="1">
+      <red-def:evr datatype="evr_string">0:1.0-0</red-def:evr>
+    </red-def:rpminfo_state>
+
+    <!-- State 2: Ensure telnet is not installed -->
+    <red-def:rpminfo_state id="oval:com-redhat-ubi9-curl:ste:2" version="1">
+      <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
+      <red-def:evr datatype="evr_string" operation="less than">0:7.76.1-29.el9_4.1.x86_64</red-def:evr>
+    </red-def:rpminfo_state>
+
+    <!-- State 3: Ensure libcurl-minimal is not installed -->
+    <red-def:rpminfo_state id="oval:com-redhat-ubi9-libcurl-minimal:ste:3" version="1">
+      <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
+      <red-def:evr datatype="evr_string" operation="less than">0:7.76.1-29.el9_4.1.x86_64</red-def:evr>
+    </red-def:rpminfo_state>
+  
+    <!-- State 4: Ensure libcurl-minimal is not installed -->
+    <red-def:rpminfo_state id="oval:com-redhat-ubi9-bzip2-libs:ste:4" version="1">
+      <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
+      <red-def:evr datatype="evr_string" operation="greater than">0</red-def:evr>
+    </red-def:rpminfo_state>
+  </states>
+  
+</oval_definitions>

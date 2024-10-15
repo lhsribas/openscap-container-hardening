@@ -1,0 +1,93 @@
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2"
+           xmlns:dc="http://purl.org/dc/elements/1.1/"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 xccdf-1.2.xsd"
+           id="xccdf_redhat_benchmark_ubi9" resolved="false">
+
+    <!-- Add the status element as required by XCCDF -->
+    <status>draft</status>
+
+    <!-- Metadata Section -->
+    <title>Red Hat Universal Base Image 9 Security Benchmark</title>
+    <description>This benchmark provides security guidance for Red Hat Universal Base Image (UBI) 9 containers.</description>
+
+    <!--notice id="terms_of_use">
+        <front-matter>These guidelines are based on best security practices for containerized environments running Red Hat UBI 9.</front-matter>
+    </notice-->
+
+    <!--reference href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/"
+              dc:publisher="Red Hat" dc:subject="Security Hardening"/-->
+
+    <version>1.0</version>
+    <!--dc:creator>Red Hat</dc:creator-->
+    <!--dc:publisher>Red Hat</dc:publisher-->
+
+    <!-- Profiles Section -->
+    <Profile id="xccdf_redhat_profile_standard_ubi9">
+        <title>Standard Security Profile</title>
+        <description>Standard security profile for UBI9 containers with basic hardening recommendations.</description>
+
+        <!-- Selecting rules -->
+        <select idref="xccdf_redhat_rule_no_telnet" selected="true"/>
+        <select idref="xccdf_redhat_rule_no_curl_minimal" selected="true"/>
+        <select idref="xccdf_redhat_rule_no_libcurl_minimal" selected="true"/>
+        <select idref="xccdf_redhat_rule_no_bzip2_libs" selected="true"/>
+    </Profile>
+
+    <!-- Rules Section -->
+    <Rule id="xccdf_redhat_rule_no_telnet" severity="high">
+        <title>Ensure telnet is not installed</title>
+        <description>This rule checks that the telnet package is not installed in UBI 9.</description>
+        <rationale>Telnet is a cleartext protocol and should be avoided for security reasons.</rationale>
+        <ident system="http://oval.mitre.org">
+            oval:com-redhat-ubi9-telnet:def:1
+        </ident>
+        <!-- remediation message -->
+        <fixtext>Remove the telnet package with 'microdnf remove telnet'.</fixtext>
+        <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-telnet:def:1"/>
+        </check>
+    </Rule>
+
+    <Rule id="xccdf_redhat_rule_no_curl_minimal" severity="high">
+        <title>Ensure curl-minimal is not installed</title>
+        <description>This rule checks that the curl package is not installed in UBI 9.</description>
+        <rationale>Curl is a cleartext protocol and should be avoided for security reasons.</rationale>
+        <ident system="http://oval.mitre.org">
+            oval:com-redhat-ubi9-curl:def:2
+        </ident>
+        <!-- remediation message -->
+        <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
+        <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-curl:def:2"/>
+        </check>
+    </Rule>
+
+    <Rule id="xccdf_redhat_rule_no_libcurl_minimal" severity="high">
+        <title>Ensure libcurl-minimal is not installed</title>
+        <description>This rule checks that the curl package is not installed in UBI 9.</description>
+        <rationale>Libcurl-minimal is a cleartext protocol and should be avoided for security reasons.</rationale>
+        <ident system="http://oval.mitre.org">
+            oval:com-redhat-ubi9-libcurl-minimal:def:3
+        </ident>
+        <!-- remediation message -->
+        <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
+        <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-libcurl-minimal:def:3"/>
+        </check>
+    </Rule>
+    
+    <Rule id="xccdf_redhat_rule_no_bzip2_libs" severity="high">
+        <title>Ensure bzip2_libs is not installed</title>
+        <description>This rule checks that the curl package is not installed in UBI 9.</description>
+        <rationale>bzip2_libs is a cleartext protocol and should be avoided for security reasons.</rationale>
+        <ident system="http://oval.mitre.org">
+            oval:com-redhat-ubi9-bzip2-libs:def:4
+        </ident>
+        <!-- remediation message -->
+        <fixtext>Remove the Curl package with 'microdnf remove curl'.</fixtext>
+        <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+            <check-content-ref href="custom-ubi9-oval.xml" name="oval:com-redhat-ubi9-bzip2-libs:def:4"/>
+        </check>
+    </Rule>
+</Benchmark>
