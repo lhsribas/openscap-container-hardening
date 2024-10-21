@@ -35,6 +35,7 @@
         </criteria>
     </definition>
 
+    <!-- 2. Check if curl-minimal is installed -->
     <definition id="oval:com-redhat-ubi9-curl:def:2" version="1" class="vulnerability">
         <metadata>
             <title>Ensure curl is not installed on Red Hat UBI 9</title>
@@ -49,6 +50,7 @@
         </criteria>
     </definition>
 
+    <!-- 3. Check if libcurl is installed -->
     <definition id="oval:com-redhat-ubi9-libcurl-minimal:def:3" version="1" class="vulnerability">
         <metadata>
             <title>Ensure libcurl is not installed on Red Hat UBI 9</title>
@@ -63,6 +65,7 @@
         </criteria>
     </definition>
 
+    <!-- 4. Check if bzip2-libs is installed -->
     <definition id="oval:com-redhat-ubi9-bzip2-libs:def:4" version="1" class="vulnerability">
         <metadata>
             <title>Ensure bzip2-libs is not installed on Red Hat UBI 9</title>
@@ -77,10 +80,26 @@
         </criteria>
     </definition>
 
+    <!-- 5. Check if wget is installed -->
+    <definition id="oval:com-redhat-ubi9-wget:def:5" version="1" class="vulnerability">
+        <metadata>
+            <title>Ensure wget is not installed on Red Hat UBI 9</title>
+            <description>Checks if the wget package is installed on Red Hat UBI 9, which should be removed due to security risks.</description>
+            <affected family="unix">
+                <platform>Red Hat Universal Base Image 9</platform>
+            </affected>
+            <severity>high</severity>
+        </metadata>
+        <criteria>
+            <criterion test_ref="oval:com-redhat-ubi9-wget:tst:5" comment="Check if wget is installed"/>
+        </criteria>
+    </definition>
+
   </definitions>
 
   <!-- Tests Section -->
   <tests> 
+
     <!-- Test 1: Check if telnet is installed -->
     <red-def:rpminfo_test id="oval:com-redhat-ubi9-telnet:tst:1" version="1" check="all" comment="Check if telnet is installed">
       <red-def:object object_ref="oval:com-redhat-ubi9-telnet:obj:1"/>
@@ -103,6 +122,12 @@
     <red-def:rpminfo_test id="oval:com-redhat-ubi9-bzip2-libs:tst:4" version="1" check="all" comment="Check if bzip2-libs is installed">
       <red-def:object object_ref="oval:com-redhat-ubi9-bzip2-libs:obj:4"/>
       <red-def:state state_ref="oval:com-redhat-ubi9-bzip2-libs:ste:4"/>
+    </red-def:rpminfo_test>
+
+    <!-- Test : Check if wget is installed -->
+    <red-def:rpminfo_test id="oval:com-redhat-ubi9-wget:tst:5" version="1" check="all" comment="Check if wget is installed">
+      <red-def:object object_ref="oval:com-redhat-ubi9-wget:obj:5"/>
+      <red-def:state state_ref="oval:com-redhat-ubi9-wget:ste:5"/>
     </red-def:rpminfo_test>
   </tests>
 
@@ -127,6 +152,10 @@
     <red-def:rpminfo_object id="oval:com-redhat-ubi9-bzip2-libs:obj:4" version="1">
       <red-def:name>bzip2-libs</red-def:name>
     </red-def:rpminfo_object>
+
+    <red-def:rpminfo_object id="oval:com-redhat-ubi9-wget:obj:5" version="1">
+      <red-def:name>wget</red-def:name>
+    </red-def:rpminfo_object>
   </objects>
 
   <!-- States Section -->
@@ -150,6 +179,11 @@
   
     <!-- State 4: Ensure libcurl-minimal is not installed -->
     <red-def:rpminfo_state id="oval:com-redhat-ubi9-bzip2-libs:ste:4" version="1">
+      <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
+      <red-def:evr datatype="evr_string" operation="greater than">0</red-def:evr>
+    </red-def:rpminfo_state>
+
+    <red-def:rpminfo_state id="oval:com-redhat-ubi9-wget:ste:5" version="1">
       <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
       <red-def:evr datatype="evr_string" operation="greater than">0</red-def:evr>
     </red-def:rpminfo_state>
